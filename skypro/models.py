@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 NULLABLE = {'blank': True, 'null': True}
@@ -30,3 +31,21 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = 'урок'
         verbose_name_plural = 'уроки'
+
+
+class Payment(models.Model):
+    CASH = 'cash'
+    TRANSFER = 'transfer'
+    PAYMENT_METHOD = (
+        ('cash', 'наличные'),
+        ('transfer', 'перевод')
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
+    payment_date = models.DateField(auto_now_add=True, verbose_name='дата оплаты', **NULLABLE)
+    paid_course = models.ForeignKey('skypro.Course', on_delete=models.CASCADE, verbose_name='оплаченный курс',
+                                    **NULLABLE)
+    paid_lesson = models.ForeignKey('skypro.Lesson', on_delete=models.CASCADE, verbose_name='оплаченный урок',
+                                    **NULLABLE)
+    payment_amount = models.FloatField(verbose_name='сумма оплаты')
+    payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD, default=TRANSFER,
+                                      verbose_name='способ оплаты')

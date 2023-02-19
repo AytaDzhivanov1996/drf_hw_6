@@ -1,0 +1,83 @@
+[ {
+    "model": "users.User",
+    "pk": 1,
+    "fields": {
+      "email": "123@sky.pro"
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 2,
+    "fields": {
+      "email": "321@sky.pro"
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 3,
+    "fields": {
+      "email": "456@sky.pro"
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 4,
+    "fields": {
+      "email": "654@sky.pro"
+    }
+  },
+  {
+    "model": "skypro.Course",
+    "pk": 1,
+    "fields": {
+      "title": "Python"
+    }
+  },
+  {
+    "model": "skypro.Lesson",
+    "pk": 1,
+    "fields": {
+      "title": "Django"
+    }
+  },
+  {
+    "model": "skypro.Payment",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "paid_lesson": 1,
+      "payment_amount": 1000,
+      "payment_method": "cash"
+    }
+  },
+  {
+    "model": "skypro.Payment",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "paid_lesson": 1,
+      "payment_amount": 2000,
+      "payment_method": "cash"
+    }
+  },
+  {
+    "model": "skypro.Payment",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "paid_course": 1,
+      "payment_amount": 10000,
+      "payment_method": "transfer"
+    }
+  },
+  {
+    "model": "skypro.payment",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "paid_course": 1,
+      "payment_amount": 20000,
+      "payment_method": "transfer"
+    }
+  }
+]
