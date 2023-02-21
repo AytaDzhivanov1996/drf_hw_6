@@ -1,4 +1,5 @@
 from rest_framework import viewsets, generics
+from rest_framework.permissions import IsAuthenticated
 
 from skypro.models import Course, Lesson
 from skypro.permissions import OwnerOrStaff
@@ -19,6 +20,7 @@ class LessonListAPIView(generics.ListAPIView):
 
 class LessonCreateAPIView(generics.CreateAPIView):
     serializer_class = LessonSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class LessonUpdateAPIView(generics.UpdateAPIView):
@@ -36,3 +38,4 @@ class LessonRetrieveAPIView(generics.RetrieveAPIView):
 class LessonDestroyAPIView(generics.DestroyAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
+    permission_classes = [IsAuthenticated]
