@@ -1,8 +1,9 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from skypro.views import CourseViewSet, LessonListAPIView, LessonCreateAPIView, LessonUpdateAPIView, LessonDestroyAPIView, \
-    LessonRetrieveAPIView
+from skypro.views import CourseViewSet, LessonListAPIView, LessonCreateAPIView, LessonUpdateAPIView, \
+    LessonDestroyAPIView, \
+    LessonRetrieveAPIView, SubscriptionCreateAPIView, SubscriptionUpdateAPIView
 
 router = DefaultRouter()
 router.register(r'course', CourseViewSet, basename='course')
@@ -13,4 +14,6 @@ urlpatterns = [
     path('lesson/update/<int:pk>/', LessonUpdateAPIView.as_view(), name='lesson_update'),
     path('retrieve_lesson/<int:pk>/', LessonRetrieveAPIView.as_view(), name='lesson_retrieve'),
     path('destroy_lesson/<int:pk>/', LessonDestroyAPIView.as_view(), name='lesson_destroy'),
+    path('subscription/create/', SubscriptionCreateAPIView.as_view(), name='subscription_create'),
+    path('subscription/delete/<int:pk>/', SubscriptionUpdateAPIView.as_view(), name='subscription_update'),
               ] + router.urls

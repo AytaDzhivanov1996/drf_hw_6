@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from skypro.models import Course, Lesson
+from skypro.models import Course, Lesson, Subscription
+from skypro.validators import LinkValidator
 
 
 class LessonSerializer(serializers.ModelSerializer):
@@ -12,6 +13,7 @@ class LessonSerializer(serializers.ModelSerializer):
             'description',
             'link_video'
         )
+        validators = [LinkValidator(field='link_video')]
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -33,3 +35,13 @@ class CourseSerializer(serializers.ModelSerializer):
         if lesson_object:
             return lesson_object.count()
         return 0
+
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
+        exclude = ['user_id', ]
+
+    def create(self, validated_data):
+        new_subscription = Subscription.objects.create(**validated_data)
+        return new_subscription

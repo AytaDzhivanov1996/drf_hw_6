@@ -51,3 +51,16 @@ class Payment(models.Model):
     payment_amount = models.FloatField(verbose_name='сумма оплаты')
     payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD, default=TRANSFER,
                                       verbose_name='способ оплаты')
+
+
+class Subscription(models.Model):
+    STATUS_ACTIVE = 'active'
+    STATUS_INACTIVE = 'inactive'
+    STATUSES = (
+        ('active', 'Вы подписаны на курс'),
+        ('inactive', 'Вы не подписаны на курс'),
+    )
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='пользователь', on_delete=models.CASCADE, **NULLABLE)
+    course_id = models.ForeignKey('skypro.Course', verbose_name='курс', on_delete=models.CASCADE, **NULLABLE)
+    status = models.CharField(max_length=20, choices=STATUSES, verbose_name='статус подписки', default=STATUS_INACTIVE)
