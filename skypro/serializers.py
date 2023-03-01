@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from skypro.models import Course, Lesson, Subscription
+from skypro.models import Course, Lesson, Subscription, Payment
 from skypro.validators import LinkValidator
 
 
@@ -40,8 +40,10 @@ class CourseSerializer(serializers.ModelSerializer):
 class SubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subscription
-        exclude = ['user_id', ]
+        exclude = ['owner', ]
 
-    def create(self, validated_data):
-        new_subscription = Subscription.objects.create(**validated_data)
-        return new_subscription
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        exclude = ['user', ]

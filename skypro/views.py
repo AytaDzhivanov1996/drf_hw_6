@@ -9,13 +9,13 @@ from skypro.serializers import CourseSerializer, LessonSerializer, SubscriptionS
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
-    permission_classes = [OwnerOrStaff]
+    permission_classes = [OwnerOrStaff, IsAuthenticated]
 
 
 class LessonListAPIView(generics.ListAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
-    permission_classes = [OwnerOrStaff]
+    permission_classes = [IsAuthenticated]
 
 
 class LessonCreateAPIView(generics.CreateAPIView):
@@ -26,13 +26,13 @@ class LessonCreateAPIView(generics.CreateAPIView):
 class LessonUpdateAPIView(generics.UpdateAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
-    permission_classes = [OwnerOrStaff]
+    permission_classes = [IsAuthenticated]
 
 
 class LessonRetrieveAPIView(generics.RetrieveAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
-    permission_classes = [OwnerOrStaff]
+    permission_classes = [OwnerOrStaff, IsAuthenticated]
 
 
 class LessonDestroyAPIView(generics.DestroyAPIView):
