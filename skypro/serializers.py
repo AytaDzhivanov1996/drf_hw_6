@@ -27,7 +27,8 @@ class CourseSerializer(serializers.ModelSerializer):
             'title',
             'image',
             'description',
-            'lesson_count'
+            'lesson_count',
+            'lesson',
         )
 
     def get_lesson_count(self, instance):
