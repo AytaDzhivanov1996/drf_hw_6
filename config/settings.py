@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,10 @@ REST_FRAMEWORK = {
 }
 
 TERMINAL_KEY = '1677659270153DEMO'
+TERMINAL_PASSWORD = '9rgoqv88ygs8g7ed'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025

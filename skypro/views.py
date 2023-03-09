@@ -5,10 +5,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from config import settings
+from django.conf import settings
 from skypro.models import Course, Lesson, Subscription, Payment, PaymentLog
 from skypro.permissions import OwnerOrStaff
 from skypro.serializers import CourseSerializer, LessonSerializer, SubscriptionSerializer
+from skypro.tasks import check_course_update
 from users.models import User
 
 
@@ -16,6 +17,10 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
     permission_classes = [OwnerOrStaff, IsAuthenticated]
+
+    def perform_update(self, serializer):
+        self.object = serializer.save()
+        check_course_update.delay(self.object.pk)
 
 
 class LessonListAPIView(generics.ListAPIView):
