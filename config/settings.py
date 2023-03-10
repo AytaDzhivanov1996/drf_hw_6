@@ -148,7 +148,10 @@ TERMINAL_KEY = '1677659270153DEMO'
 TERMINAL_PASSWORD = '9rgoqv88ygs8g7ed'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+
+
